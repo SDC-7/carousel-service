@@ -2,20 +2,25 @@ const express = require('express')
 const app = express()
 const port = 4000
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
+
+app.get(`/api/images/:location`, (req, res) => {
+  const location = req.params.location;
+  res.send(`GET request images for location #${location}`)
 })
 
-app.post('/', function (req, res) {
-  res.send('Got a POST request')
+app.post(`/api/images/:location`, function (req, res) {
+  const location = req.params.location;
+  res.send(`POST request images for location #${location}`)
 })
 
-app.put('/', function (req, res) {
-  res.send('Got a PUT request')
+app.put(`/api/images/:location`, function (req, res) {
+  const location = req.params.location;
+  res.send(`PUT request images for location #${location}`)
 })
 
-app.delete('/', function (req, res) {
-  res.send('Got a DELETE request')
+app.delete(`/api/images/:location`, function (req, res) {
+  const location = req.params.location;
+  res.send(`DELETE request images for location #${location}`)
 })
 
 app.listen(port, () => {
