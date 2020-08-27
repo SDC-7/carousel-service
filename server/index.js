@@ -20,9 +20,9 @@ app.get(`/api/images/:location`, (req, res) => {
   const location = req.params.location;
   db.query(`SELECT * FROM images WHERE location_id = ${location} ORDER BY img_order ASC`, (err, data) => {
     if (err) {
-      res.send('An error occurred with GET request');
+      res.status(500).send('An error occurred with GET request');
     } else {
-      res.send(data);
+      res.status(200).send(data);
     }
   });
 })
@@ -31,7 +31,7 @@ app.get(`/api/images/:location`, (req, res) => {
 app.post(`/api/images/:location`, (req, res) => {
   db.query('INSERT INTO images (location_id, url, img_order) VALUES (101, https://www.pexels.com/photo/interior-design-of-a-house-1571460/, 1)', (err, data) => {
     if (err) {
-      res.send(err);
+      res.status(500).send('An error occurred with POST request');
     } else {
       res.send(data);
     }
@@ -43,9 +43,9 @@ app.put(`/api/images/:location`, (req, res) => {
   const location = req.params.location;
   db.query(`UPDATE images SET location_id = ${location} WHERE id = ${location}`, (err, data) => {
     if (err) {
-      res.send(err);
+      res.status(500).send('An error occurred with PUT request');
     } else {
-      res.send(data);
+      res.status(200).send(data);
     }
   });
   // res.send(`PUT request images for location #${location}`)
@@ -54,9 +54,9 @@ app.put(`/api/images/:location`, (req, res) => {
 app.delete(`/api/images/:location`, (req, res) => {
   db.query(`DELETE FROM images WHERE id > 150`, (err, data) => {
     if (err) {
-      res.send(err);
+      res.status(500).send('An error occurred with DELETE request');
     } else {
-      res.send(data);
+      res.status(200).send(data);
     }
   });
   // res.send(`DELETE request images for location #${location}`)
