@@ -1,42 +1,49 @@
 /*
 FIELDS
-Location id (auto increment)
+Location id
 Image URL (from s3)
 Image order (auto increment for # of images per location id)
 */
 
-const fs = require('fs')
-const argv = require('yargs').argv
+const fs = require('fs');
+const argv = require('yargs').argv;
 
-const lines = argv.lines || 1000000
-const fileName = argv.output || 'data.csv'
-const writeStream = fs.createWriteStream(fileName)
+const lines = argv.lines || 1000000;
+const fileName = argv.output || 'listingImageData.csv';
+const stream = fs.createWriteStream(fileName);
 
-const createEntry = () => {
+const createListing = () => {
   const locationId = NULL;
   const imageUrl = NULL;
   const imageOrder = NULL;
 
-  return `${imageUrl},${imageOrder}\n`
+  return `${locationId},${imageUrl},${imageOrder}\n`;
 }
 
-const writeEntries = (createEntry, encoding, done) => {
+const writeListings = (createListing, encoding, done) => {
   let i = entries;
 
   function writing() {
-    let canWrite = true
+    let canWrite = true;
     do {
-      i--
-      // check if i === 0 so we would write and call 'done'
-      // else write and continue looping
+      i--;
+      let listing = createListing();
+      if (i === 0) {
+        writeStream.write(listing, encoding, done);
+      } else {
+        writeStream.write(listing, encoding);
+      }
     } while (i > 0 && canWrite) {
       if (i > 0 && !canWrite) {
-        // our buffer for stream filled and need to wait for drain
-        // write some more once it drains
         writeStream.once('drain', writing);
       }
     }
   }
-  // initiate our writing function
   writing();
 }
+
+stream.write(`locationId, imageUrl, imageOrder\n`, 'utf-8');
+
+writeListings(stream, 'utf-8', () => {
+  stream.end;
+})
