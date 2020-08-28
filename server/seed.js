@@ -13,6 +13,7 @@ const fileName = argv.output || 'data.csv'
 const writeStream = fs.createWriteStream(fileName)
 
 const createEntry = () => {
+  const locationId = NULL;
   const imageUrl = NULL;
   const imageOrder = NULL;
 
@@ -36,5 +37,6 @@ const writeEntries = (createEntry, encoding, done) => {
       }
     }
   }
+  // initiate our writing function
   writing();
 }
