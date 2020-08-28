@@ -34,7 +34,6 @@
     "identity-obj-proxy": "^3.0.0",
     "jest-sinon": "^1.0.4",
     "jquery": "^3.5.1",
-    "mysql": "^2.18.1",
     "nodemon": "^2.0.4",
     "postcss-loader": "^3.0.0",
     "precss": "^4.0.0",
