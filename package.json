@@ -10,7 +10,7 @@
   "scripts": {
     "start:dev": "nodemon server/index.js",
     "start": "node server/index.js",
-    "seed": "",
+    "seed": "node server/seed.js --lines 100 --output server/listingImageData.csv",
     "test": "jest",
     "build:dev": "webpack -d --watch",
     "build": "webpack -d"
