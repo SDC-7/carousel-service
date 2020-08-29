@@ -1,23 +1,37 @@
-/*
-FIELDS
-Location id
-Image URL (from s3)
-Image order (auto increment for # of images per location id)
-*/
-
 const fs = require('fs');
 const argv = require('yargs').argv;
 
-const lines = argv.lines || 1000000;
+const entries = argv.lines || 10000000;
 const fileName = argv.output || 'listingImageData.csv';
 const stream = fs.createWriteStream(fileName);
 
 const createListing = () => {
-  const locationId = NULL;
-  const imageUrl = NULL;
-  const imageOrder = NULL;
+  const imageUrls = [];
 
-  return `${locationId},${imageUrl},${imageOrder}\n`;
+  const getRandomPhotoCount = () => {
+    return Math.floor(Math.random() * (21) + 1);
+  }
+
+  const numberOfPhotos = getRandomPhotoCount();
+
+  const selectRandomPhoto = () => {
+    return Math.floor(Math.random() * (293) + 1);
+  }
+
+  let imageCount = 0;
+
+  while (imageCount < numberOfPhotos) {
+    const imageId = selectRandomPhoto();
+    imageUrls.push(`"https://src-carousel.s3.us-east-2.amazonaws.com/image${imageId}.jpg"`);
+    imageCount++;
+
+    if (imageUrls.length === 30) {
+      console.log('random photo selection error');
+      break;
+    }
+  }
+
+  return `${imageUrls}\n`;
 }
 
 const writeListings = (createListing, encoding, done) => {
@@ -42,7 +56,7 @@ const writeListings = (createListing, encoding, done) => {
   writing();
 }
 
-stream.write(`locationId, imageUrl, imageOrder\n`, 'utf-8');
+stream.write(`imageUrl\n`, 'utf-8');
 
 writeListings(stream, 'utf-8', () => {
   stream.end;
