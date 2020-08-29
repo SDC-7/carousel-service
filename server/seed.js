@@ -1,7 +1,7 @@
 const fs = require('fs');
 const argv = require('yargs').argv;
 
-const entries = argv.lines || 10000000;
+const entries = argv.entries || 10000000;
 const fileName = argv.output || 'listingImageData.csv';
 const stream = fs.createWriteStream(fileName);
 
@@ -34,7 +34,7 @@ const createListing = () => {
   return `${imageUrls}\n`;
 }
 
-const writeListings = (createListing, encoding, done) => {
+const writeListings = (writeStream, encoding, done) => {
   let i = entries;
 
   function writing() {
