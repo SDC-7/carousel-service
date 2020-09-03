@@ -29,3 +29,6 @@ db/config.js
 bundle.js
 config.js
 server/listingImageData.csv
+server/testListingImageData.csv
+server/commands.js
+server/manualListingImageData.csv

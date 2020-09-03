@@ -5,8 +5,10 @@ const entries = argv.entries;
 const fileName = argv.output;;
 const stream = fs.createWriteStream(fileName);
 
+let locationId = 0;
+
 const createListing = () => {
-  const imageUrls = [];
+  let imageUrls = '';
 
   const getRandomPhotoCount = () => {
     return Math.floor(Math.random() * (21) + 1);
@@ -22,7 +24,14 @@ const createListing = () => {
 
   while (imageCount < numberOfPhotos) {
     const imageId = selectRandomPhoto();
-    imageUrls.push(`"https://src-carousel.s3.us-east-2.amazonaws.com/image${imageId}.jpg"`);
+    // imageUrls += `"https://src-carousel.s3.us-east-2.amazonaws.com/image${imageId}.jpg", `;
+
+    if (imageCount < numberOfPhotos -1) {
+      imageUrls += `""https://src-carousel.s3.us-east-2.amazonaws.com/image${imageId}.jpg"", `;
+    } else {
+      imageUrls += `""https://src-carousel.s3.us-east-2.amazonaws.com/image${imageId}.jpg""`;
+    }
+
     imageCount++;
 
     if (imageUrls.length === 30) {
@@ -31,7 +40,8 @@ const createListing = () => {
     }
   }
 
-  return `${imageUrls}\n`;
+  locationId++;
+  return `${locationId},"{${imageUrls}}"\n`;
 }
 
 const writeListings = (writeStream, encoding, done) => {
@@ -56,7 +66,7 @@ const writeListings = (writeStream, encoding, done) => {
   writing();
 }
 
-// stream.write('utf-8');
+stream.write('location_id,image_urls\n','utf-8');
 
 writeListings(stream, 'utf-8', () => {
   stream.end;
