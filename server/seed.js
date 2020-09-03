@@ -5,8 +5,6 @@ const entries = argv.entries;
 const fileName = argv.output;;
 const stream = fs.createWriteStream(fileName);
 
-let id = 0;
-
 const createListing = () => {
   const imageUrls = [];
 
@@ -32,8 +30,8 @@ const createListing = () => {
       break;
     }
   }
-  id++;
-  return `${id},${imageUrls}\n`;
+
+  return `${imageUrls}\n`;
 }
 
 const writeListings = (writeStream, encoding, done) => {
@@ -58,7 +56,7 @@ const writeListings = (writeStream, encoding, done) => {
   writing();
 }
 
-stream.write(`listing_id,image_url\n`, 'utf-8');
+// stream.write('utf-8');
 
 writeListings(stream, 'utf-8', () => {
   stream.end;
