@@ -30,5 +30,7 @@ bundle.js
 config.js
 server/listingImageData.csv
 server/testListingImageData.csv
-server/commands.js
+database/commands.js
 server/manualListingImageData.csv
+newrelic.js
+config.js
