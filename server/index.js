@@ -7,7 +7,9 @@ const cors = require('cors');
 app.use(cors());
 
 app.use(express.json());
-app.use('/:id', express.static(__dirname + '/../public'));
+
+app.use(express.static('client/dist'));
+app.use('/:id', express.static('client/dist'));
 
 app.get('/api/images/:location', (req, res) => {
   const query = 'SELECT * FROM images WHERE location_id = $1';
@@ -16,7 +18,7 @@ app.get('/api/images/:location', (req, res) => {
     if (error) {
       console.log(error);
     }
-    res.status(200).send(results.rows);
+    res.status(200).send(results.rows[0].image_urls);
   });
 });
 
