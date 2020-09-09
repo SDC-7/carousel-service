@@ -18,3 +18,22 @@ scenarios:
       # Get the details of the product:
       - get:
           url: "/{{ $randomNumber(1, 10000000) }}"
+
+# RESULTS
+# All virtual users finished
+# Summary report @ 19:24:55(-0500) 2020-09-08
+#   Scenarios launched:  33637
+#   Scenarios completed: 33637
+#   Requests completed:  67274
+#   Mean response/sec: 86.14
+#   Response time (msec):
+#     min: 0.6
+#     max: 70.9
+#     median: 1.9
+#     p95: 4
+#     p99: 5.9
+#   Scenario counts:
+#     Load carousel: 33637 (100%)
+#   Codes:
+#     200: 33637
+#     301: 33637

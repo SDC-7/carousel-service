@@ -14,7 +14,8 @@
     "seed:test": "node server/seed.js --entries 10 --output server/testListingImageData.csv",
     "test": "jest",
     "build:dev": "webpack -d --watch",
-    "build": "webpack -d"
+    "build": "webpack -d",
+    "stress": "artillery run database/serverStressTesting.yml"
   },
   "dependencies": {
     "autoprefixer": "^9.8.6",
