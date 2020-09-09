@@ -27,9 +27,9 @@ const createListing = () => {
     // imageUrls += `"https://src-carousel.s3.us-east-2.amazonaws.com/image${imageId}.jpg", `;
 
     if (imageCount < numberOfPhotos -1) {
-      imageUrls += `""https://src-carousel.s3.us-east-2.amazonaws.com/image${imageId}.jpg"", `;
+      imageUrls += `""https://src-carousel.s3.us-east-2.amazonaws.com/image${imageId}.jpeg"", `;
     } else {
-      imageUrls += `""https://src-carousel.s3.us-east-2.amazonaws.com/image${imageId}.jpg""`;
+      imageUrls += `""https://src-carousel.s3.us-east-2.amazonaws.com/image${imageId}.jpeg""`;
     }
 
     imageCount++;
