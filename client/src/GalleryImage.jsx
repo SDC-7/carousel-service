@@ -2,9 +2,9 @@
 import React from 'react';
 import gallery from './gallery.css';
 
-const GalleryImage = ({ image, length }) => {
+const GalleryImage = ({ image, length, batch }) => {
   // const id = image.img_order;
-  const id = image.indexOf();
+  const id = batch.indexOf(image);
   const imgClass = `img${id}in${length}`;
   // const url = `url(${image.url})`;
   const url = `url(${image})`;

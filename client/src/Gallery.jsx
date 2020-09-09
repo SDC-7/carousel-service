@@ -158,6 +158,7 @@ class Gallery extends React.Component {
                   <GalleryImage
                     image={image}
                     length={batch.length}
+                    batch={batch}
                     /*key={image.id}*/
                   />
                 ))}
