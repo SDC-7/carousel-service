@@ -2,7 +2,7 @@ const fs = require('fs');
 const argv = require('yargs').argv;
 
 const entries = argv.entries;
-const fileName = argv.output;;
+const fileName = argv.output;
 const stream = fs.createWriteStream(fileName);
 
 let locationId = 0;

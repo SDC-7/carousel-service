@@ -12,6 +12,7 @@
     "start": "node server/index.js",
     "seed": "node database/seed.js --entries 10000000 --output server/listingImageData.csv",
     "seed:test": "node database/seed.js --entries 10 --output server/testListingImageData.csv",
+    "schema": "node database/schema.js",
     "test": "jest",
     "build:dev": "webpack -d --watch",
     "build": "webpack -d",

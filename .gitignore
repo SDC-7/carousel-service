@@ -34,3 +34,4 @@ database/commands.js
 server/manualListingImageData.csv
 newrelic.js
 config.js
+pems
